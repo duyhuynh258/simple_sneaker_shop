@@ -5,6 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:simple_sneaker_shop/core/presentation/widgets/loading_view.dart';
 import 'package:simple_sneaker_shop/products/infrastructure/product_repository.dart';
 import 'package:simple_sneaker_shop/products/presentation/pages/product_page.dart';
+import 'package:simple_sneaker_shop/products/presentation/widgets/empty_product_view.dart';
 import 'package:simple_sneaker_shop/products/presentation/widgets/product_list_view.dart';
 import 'package:simple_sneaker_shop/products/shared/providers.dart';
 
@@ -59,6 +60,25 @@ void main() {
     expect(find.byType(LoadingView), findsOneWidget);
     await tester.pump(getProductDuration);
     expect(find.byType(ProductListView), findsOneWidget);
-    await tester.pumpAndSettle();
+  });
+
+  testWidgets(
+      'render LoadingView and EmptyProductView when load products success.',
+      (WidgetTester tester) async {
+    //arrange
+    const getProductDuration = Duration(seconds: 2);
+    when(() => mockProductRepository.getProducts()).thenAnswer((invocation) =>
+        Future.delayed(getProductDuration, () async => right([])));
+    await tester.pumpApp(
+      overrides: [
+        productRepositoryProvider.overrideWithValue(mockProductRepository),
+      ],
+      widget: const ProductPage(),
+    );
+
+    await tester.pump();
+    expect(find.byType(LoadingView), findsOneWidget);
+    await tester.pump(getProductDuration);
+    expect(find.byType(EmptyProductView), findsOneWidget);
   });
 }
