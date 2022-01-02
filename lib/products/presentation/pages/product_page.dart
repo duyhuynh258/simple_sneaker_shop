@@ -42,7 +42,6 @@ class _ProductPageState extends ConsumerState<ProductPage> {
               },
               loadFailure: (_) {
                 return const ProductsLoadFailedView();
-                return ProductListView(_.products);
               });
         },
       ),

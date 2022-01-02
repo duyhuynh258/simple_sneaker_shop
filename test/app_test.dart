@@ -7,6 +7,7 @@ void main() {
   group('App', () {
     testWidgets('renders ProductPage', (tester) async {
       await tester.pumpWidget(const ProviderScope(child: App()));
+      await tester.pumpAndSettle();
       expect(find.byType(ProductPage), findsOneWidget);
     });
   });

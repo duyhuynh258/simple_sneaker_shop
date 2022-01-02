@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProductsFailureTearOff {
   const _$ProductsFailureTearOff();
 
-  _Server server({int? message}) {
+  _Server server({String? message}) {
     return _Server(
       message: message,
     );
@@ -29,21 +29,21 @@ const $ProductsFailure = _$ProductsFailureTearOff();
 
 /// @nodoc
 mixin _$ProductsFailure {
-  int? get message => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? message) server,
+    required TResult Function(String? message) server,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? message)? server,
+    TResult Function(String? message)? server,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? message)? server,
+    TResult Function(String? message)? server,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,7 +74,7 @@ abstract class $ProductsFailureCopyWith<$Res> {
   factory $ProductsFailureCopyWith(
           ProductsFailure value, $Res Function(ProductsFailure) then) =
       _$ProductsFailureCopyWithImpl<$Res>;
-  $Res call({int? message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class _$ProductsFailureCopyWithImpl<$Res>
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ));
   }
 }
@@ -105,7 +105,7 @@ abstract class _$ServerCopyWith<$Res>
   factory _$ServerCopyWith(_Server value, $Res Function(_Server) then) =
       __$ServerCopyWithImpl<$Res>;
   @override
-  $Res call({int? message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class __$ServerCopyWithImpl<$Res> extends _$ProductsFailureCopyWithImpl<$Res>
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ));
   }
 }
@@ -136,7 +136,7 @@ class _$_Server extends _Server {
   const _$_Server({this.message}) : super._();
 
   @override
-  final int? message;
+  final String? message;
 
   @override
   String toString() {
@@ -163,7 +163,7 @@ class _$_Server extends _Server {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int? message) server,
+    required TResult Function(String? message) server,
   }) {
     return server(message);
   }
@@ -171,7 +171,7 @@ class _$_Server extends _Server {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? message)? server,
+    TResult Function(String? message)? server,
   }) {
     return server?.call(message);
   }
@@ -179,7 +179,7 @@ class _$_Server extends _Server {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int? message)? server,
+    TResult Function(String? message)? server,
     required TResult orElse(),
   }) {
     if (server != null) {
@@ -218,11 +218,11 @@ class _$_Server extends _Server {
 }
 
 abstract class _Server extends ProductsFailure {
-  const factory _Server({int? message}) = _$_Server;
+  const factory _Server({String? message}) = _$_Server;
   const _Server._() : super._();
 
   @override
-  int? get message;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   _$ServerCopyWith<_Server> get copyWith => throw _privateConstructorUsedError;

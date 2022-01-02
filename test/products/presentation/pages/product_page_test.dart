@@ -29,19 +29,6 @@ void main() {
     }
   });
 
-  void addTearDown(VoidCallback tearOffFunction) {
-    tearOffCallbacks.add(tearOffFunction);
-  }
-
-  Future<void> arrangeProductPageWithMockRepository(WidgetTester tester) async {
-    await tester.pumpApp(
-      overrides: [
-        productRepositoryProvider.overrideWithValue(mockProductRepository),
-      ],
-      widget: const ProductPage(),
-    );
-  }
-
   testWidgets(
       'render LoadingView and ProductListView when load products success.',
       (WidgetTester tester) async {

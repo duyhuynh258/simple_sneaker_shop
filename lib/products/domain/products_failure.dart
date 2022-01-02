@@ -5,5 +5,5 @@ part 'products_failure.freezed.dart';
 @freezed
 class ProductsFailure with _$ProductsFailure {
   const ProductsFailure._();
-  const factory ProductsFailure.server({int? message}) = _Server;
+  const factory ProductsFailure.server({String? message}) = _Server;
 }
