@@ -6,7 +6,7 @@ part 'product.freezed.dart';
 @freezed
 abstract class Product with _$Product {
   const factory Product({
-    required Uuid uuid,
+    required String uuid,
     required String name,
     required String description,
     required List<String> imageUrls,

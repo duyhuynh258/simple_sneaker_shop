@@ -36,7 +36,8 @@ class _$ProductsStateTearOff {
   }
 
   _LoadFailure loadFailure(
-      {required List<Product> products, required ProductsFailure failure}) {
+      {List<Product> products = const <Product>[],
+      required ProductsFailure failure}) {
     return _LoadFailure(
       products: products,
       failure: failure,
@@ -650,9 +651,11 @@ class __$LoadFailureCopyWithImpl<$Res> extends _$ProductsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadFailure extends _LoadFailure {
-  const _$_LoadFailure({required this.products, required this.failure})
+  const _$_LoadFailure(
+      {this.products = const <Product>[], required this.failure})
       : super._();
 
+  @JsonKey()
   @override
   final List<Product> products;
   @override
@@ -763,7 +766,7 @@ class _$_LoadFailure extends _LoadFailure {
 
 abstract class _LoadFailure extends ProductsState {
   const factory _LoadFailure(
-      {required List<Product> products,
+      {List<Product> products,
       required ProductsFailure failure}) = _$_LoadFailure;
   const _LoadFailure._() : super._();
 

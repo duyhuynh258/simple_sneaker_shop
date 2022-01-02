@@ -18,7 +18,7 @@ class _$ProductTearOff {
   const _$ProductTearOff();
 
   _Product call(
-      {required Uuid uuid,
+      {required String uuid,
       required String name,
       required String description,
       required List<String> imageUrls,
@@ -42,7 +42,7 @@ const $Product = _$ProductTearOff();
 
 /// @nodoc
 mixin _$Product {
-  Uuid get uuid => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get imageUrls => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res>;
   $Res call(
-      {Uuid uuid,
+      {String uuid,
       String name,
       String description,
       List<String> imageUrls,
@@ -90,7 +90,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as Uuid,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$ProductCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Uuid uuid,
+      {String uuid,
       String name,
       String description,
       List<String> imageUrls,
@@ -157,7 +157,7 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       uuid: uuid == freezed
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
-              as Uuid,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ class _$_Product extends _Product {
       : super._();
 
   @override
-  final Uuid uuid;
+  final String uuid;
   @override
   final String name;
   @override
@@ -254,7 +254,7 @@ class _$_Product extends _Product {
 
 abstract class _Product extends Product {
   const factory _Product(
-      {required Uuid uuid,
+      {required String uuid,
       required String name,
       required String description,
       required List<String> imageUrls,
@@ -264,7 +264,7 @@ abstract class _Product extends Product {
   const _Product._() : super._();
 
   @override
-  Uuid get uuid;
+  String get uuid;
   @override
   String get name;
   @override
