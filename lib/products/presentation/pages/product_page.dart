@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_sneaker_shop/core/presentation/widgets/loading_view.dart';
 import 'package:simple_sneaker_shop/products/application/products_notifier.dart';
-import 'package:simple_sneaker_shop/products/presentation/widgets/empty_product_view.dart';
-import 'package:simple_sneaker_shop/products/presentation/widgets/product_list_view.dart';
+import 'package:simple_sneaker_shop/products/presentation/widgets/widgets.dart';
 import 'package:simple_sneaker_shop/products/shared/providers.dart';
 
 class ProductPage extends ConsumerStatefulWidget {
@@ -37,11 +36,14 @@ class _ProductPageState extends ConsumerState<ProductPage> {
               loadInProgress: (_) => const LoadingView(),
               loadSuccess: (_) {
                 if (_.products.isEmpty) {
-                  return const EmptyProductView();
+                  return const ProductEmptyView();
                 }
                 return ProductListView(_.products);
               },
-              loadFailure: (_) => ProductListView(_.products));
+              loadFailure: (_) {
+                return const ProductsLoadFailedView();
+                return ProductListView(_.products);
+              });
         },
       ),
     );
