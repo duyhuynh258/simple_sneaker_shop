@@ -29,15 +29,21 @@ class _ProductPageState extends ConsumerState<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final productsState = ref.watch(productsNotifierProvider);
-    return productsState.map(
-        initial: (_) => const SizedBox(),
-        loadInProgress: (_) => const LoadingView(),
-        loadSuccess: (_) {
-          if (_.products.isEmpty) {
-            return const EmptyProductView();
-          }
-          return ProductListView(_.products);
+    return Scaffold(
+      body: Builder(
+        builder: (BuildContext context) {
+          return productsState.map(
+              initial: (_) => const SizedBox(),
+              loadInProgress: (_) => const LoadingView(),
+              loadSuccess: (_) {
+                if (_.products.isEmpty) {
+                  return const EmptyProductView();
+                }
+                return ProductListView(_.products);
+              },
+              loadFailure: (_) => ProductListView(_.products));
         },
-        loadFailure: (_) => ProductListView(_.products));
+      ),
+    );
   }
 }

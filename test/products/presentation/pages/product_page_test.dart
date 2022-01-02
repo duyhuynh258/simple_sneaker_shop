@@ -47,8 +47,8 @@ void main() {
     // `when` setup must stand before pumpApp
     const getProductDuration = Duration(seconds: 2);
     when(() => mockProductRepository.getProducts()).thenAnswer((invocation) =>
-        Future.delayed(
-            getProductDuration, () async => right(ProductsFixture.products)));
+        Future.delayed(getProductDuration,
+            () async => right(ProductsFixture.twoProducts)));
     await tester.pumpApp(
       overrides: [
         productRepositoryProvider.overrideWithValue(mockProductRepository),

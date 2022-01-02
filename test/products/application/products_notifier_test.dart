@@ -20,7 +20,7 @@ void main() {
 
   void arrangeRepositoryReturn2Products() {
     when(() => mockProductRepository.getProducts()).thenAnswer(
-        (invocation) => Future.value(right(ProductsFixture.products)));
+        (invocation) => Future.value(right(ProductsFixture.twoProducts)));
   }
 
   group('Test products_notifier', () {
@@ -65,7 +65,7 @@ void main() {
 
         //assert
         expect(sut.debugState,
-            ProductsState.loadSuccess(products: ProductsFixture.products));
+            ProductsState.loadSuccess(products: ProductsFixture.twoProducts));
       });
 
       test('should emit failure state when load failed', () async {

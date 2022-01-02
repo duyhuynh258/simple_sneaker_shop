@@ -2,7 +2,7 @@ import 'package:simple_sneaker_shop/products/domain/product.dart';
 
 class ProductsFixture {
   ProductsFixture._();
-  static List<Product> get products => [
+  static List<Product> get twoProducts => [
         const Product(
           uuid: 'a7efbb80-106c-11ea-892c-33b795b2e87e',
           name: 'Off-White',
