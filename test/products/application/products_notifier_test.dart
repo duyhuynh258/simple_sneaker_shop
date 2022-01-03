@@ -87,8 +87,10 @@ void main() {
         await sut.getFirstProductsPage();
 
         //assert
-        expect(sut.debugState,
-            const PaginatedProductsState.loadFailure(failure: failure));
+        expect(
+            sut.debugState,
+            const PaginatedProductsState.loadFailure(
+                failure: failure, isNextPageAvailable: false));
       });
     });
   });

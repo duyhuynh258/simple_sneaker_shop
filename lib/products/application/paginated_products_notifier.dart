@@ -33,35 +33,46 @@ class PaginatedProductsState with _$PaginatedProductsState {
   const factory PaginatedProductsState.loadFailure({
     @Default(<Product>[]) List<Product> products,
     required ProductsFailure failure,
+    required bool isNextPageAvailable,
   }) = _LoadFailure;
 }
 
 class PaginatedProductsNotifier extends StateNotifier<PaginatedProductsState> {
   PaginatedProductsNotifier() : super(const PaginatedProductsState.initial());
 
-  int _page = 1;
+  int _page = 0;
 
   @protected
   void resetState() {
-    _page = 1;
+    _page = 0;
     state = const PaginatedProductsState.initial();
   }
 
   @protected
   Future<void> getNextPage(RepositoryGetter getter) async {
+    final bool previousIsNextPageAvailable = state.mapOrNull(
+            loadSuccess: (_) => _.isNextPageAvailable,
+            loadFailure: (_) => _.isNextPageAvailable) ??
+        false;
     state = PaginatedProductsState.loadInProgress(
       products: state.products,
       itemsPerPage: state.mapOrNull(loadSuccess: (_) => _.itemsPerPage),
     );
     final failureOrRepos = await getter(_page);
     state = failureOrRepos.fold(
-      (l) => PaginatedProductsState.loadFailure(
-          products: state.products, failure: l),
+      (l) {
+        //failure
+        return PaginatedProductsState.loadFailure(
+            products: state.products,
+            failure: l,
+            isNextPageAvailable: previousIsNextPageAvailable);
+      },
       (r) {
+        //success
         _page++;
         return PaginatedProductsState.loadSuccess(
           isNextPageAvailable: r.isNextPageAvailable,
-          products: r.data,
+          products: [...state.products, ...r.data],
           itemsPerPage: r.pageSize,
         );
       },

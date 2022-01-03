@@ -10,7 +10,11 @@ void main() {
   testWidgets('render product list view', (WidgetTester tester) async {
     await mockNetworkImagesFor(() async {
       await tester.pumpApp(
-          widget: Scaffold(body: ProductListView(ProductsFixture.twoProducts)));
+          widget: Scaffold(
+              body: ProductListView(
+        ProductsFixture.twoProducts,
+        isNextPageAvailable: false,
+      )));
       await tester.pumpAndSettle();
       expect(find.byType(ProductPreviewCard), findsNWidgets(2));
     });

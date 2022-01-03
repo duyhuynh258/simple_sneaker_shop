@@ -25,6 +25,9 @@ void main() {
 
   final productsPageWith2Products = PaginatedList(
       data: ProductsFixture.twoProducts, page: 0, pageSize: 2, totalCount: 2);
+
+  final productsPageWith2ProductsAndMore = PaginatedList(
+      data: ProductsFixture.twoProducts, page: 0, pageSize: 2, totalCount: 4);
   const productsEmptyPage =
       PaginatedList(data: <Product>[], page: 0, pageSize: 2, totalCount: 0);
 
@@ -40,7 +43,7 @@ void main() {
   });
 
   testWidgets(
-      'render LoadingView and ProductListView when load products success.',
+      'render LoadingView then ProductListView when load products success.',
       (WidgetTester tester) async {
     await mockNetworkImagesFor(
       // Run your tests.
@@ -49,6 +52,32 @@ void main() {
         when(() => mockProductRepository.getProductsPage(any())).thenAnswer(
             (invocation) => Future.delayed(getProductDuration,
                 () async => right(productsPageWith2Products)));
+        await tester.pumpApp(
+          overrides: [
+            productRepositoryProvider.overrideWithValue(mockProductRepository),
+          ],
+          widget: const ProductPage(),
+        );
+
+        await tester.pump();
+        expect(find.byType(LoadingView), findsOneWidget);
+        await tester.pump(getProductDuration);
+        expect(find.byType(ProductListView), findsOneWidget);
+      },
+    );
+  });
+
+  testWidgets(
+      'render LoadingView and ProductListView when loading more products.',
+      (WidgetTester tester) async {
+    await mockNetworkImagesFor(
+      // Run your tests.
+      () async {
+        const getProductDuration = Duration(seconds: 2);
+        when(() => mockProductRepository.getProductsPage(any())).thenAnswer(
+            (invocation) => Future.delayed(getProductDuration,
+                () async => right(productsPageWith2ProductsAndMore)));
+
         await tester.pumpApp(
           overrides: [
             productRepositoryProvider.overrideWithValue(mockProductRepository),

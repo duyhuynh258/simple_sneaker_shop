@@ -15,8 +15,11 @@ class PaginatedList<T> with _$PaginatedList<T> {
 
   bool get isNextPageAvailable {
     int itemCountIncludeCurrentPage = 0;
-    if (page > 1) {
-      itemCountIncludeCurrentPage = (page - 1) * pageSize + data.length;
+    if (page > 0) {
+      final previousPage = page - 1;
+      // +1 because page index start from 0.
+      final previousPagesCount = previousPage + 1;
+      itemCountIncludeCurrentPage = previousPagesCount * pageSize + data.length;
     } else {
       itemCountIncludeCurrentPage = data.length;
     }
