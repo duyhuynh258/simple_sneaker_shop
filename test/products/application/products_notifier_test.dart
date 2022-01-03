@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:simple_sneaker_shop/products/application/products_notifier.dart';
+import 'package:simple_sneaker_shop/core/core.dart';
+import 'package:simple_sneaker_shop/products/application/application.dart';
 import 'package:simple_sneaker_shop/products/domain/products_failure.dart';
 import 'package:simple_sneaker_shop/products/infrastructure/product_repository.dart';
 
@@ -12,6 +13,8 @@ class MockProductRepository extends Mock implements ProductRepository {}
 void main() {
   late ProductRepository mockProductRepository;
   late ProductsNotifier sut;
+  final productsPageWith2Products = PaginatedList(
+      data: ProductsFixture.twoProducts, page: 0, pageSize: 2, totalCount: 2);
 
   setUp(() {
     mockProductRepository = MockProductRepository();
@@ -19,16 +22,16 @@ void main() {
   });
 
   void arrangeRepositoryReturn2Products() {
-    when(() => mockProductRepository.getProducts()).thenAnswer(
-        (invocation) => Future.value(right(ProductsFixture.twoProducts)));
+    when(() => mockProductRepository.getProductsPage(any())).thenAnswer(
+        (invocation) => Future.value(right(productsPageWith2Products)));
   }
 
   group('Test products_notifier', () {
     test('should has initial state', () {
-      expect(sut.debugState, const ProductsState.initial());
+      expect(sut.debugState, const PaginatedProductsState.initial());
     });
 
-    group('loadProducts', () {
+    group('getFirstProductsPage', () {
       test('should emit loading state', () {
         //arrange
         arrangeRepositoryReturn2Products();
@@ -37,12 +40,12 @@ void main() {
         expectLater(
           sut.stream,
           emits(
-            const ProductsState.loadInProgress(),
+            const PaginatedProductsState.loadInProgress(),
           ),
         );
 
         //act
-        sut.loadProducts();
+        sut.getFirstProductsPage();
       });
 
       test('should call repository', () async {
@@ -50,10 +53,10 @@ void main() {
         arrangeRepositoryReturn2Products();
 
         //act
-        await sut.loadProducts();
+        await sut.getFirstProductsPage();
 
         //assert
-        verify(mockProductRepository.getProducts).called(1);
+        verify(() => mockProductRepository.getProductsPage(any())).called(1);
       });
 
       test('should emit success state when load successfully', () async {
@@ -61,25 +64,31 @@ void main() {
         arrangeRepositoryReturn2Products();
 
         //act
-        await sut.loadProducts();
+        await sut.getFirstProductsPage();
 
         //assert
-        expect(sut.debugState,
-            ProductsState.loadSuccess(products: ProductsFixture.twoProducts));
+        expect(
+          sut.debugState,
+          PaginatedProductsState.loadSuccess(
+            products: ProductsFixture.twoProducts,
+            itemsPerPage: 2,
+            isNextPageAvailable: false,
+          ),
+        );
       });
 
       test('should emit failure state when load failed', () async {
         //arrange
         const ProductsFailure failure = ProductsFailure.server();
-        when(() => mockProductRepository.getProducts())
+        when(() => mockProductRepository.getProductsPage(any()))
             .thenAnswer((invocation) => Future.value(left(failure)));
 
         //act
-        await sut.loadProducts();
+        await sut.getFirstProductsPage();
 
         //assert
-        expect(
-            sut.debugState, const ProductsState.loadFailure(failure: failure));
+        expect(sut.debugState,
+            const PaginatedProductsState.loadFailure(failure: failure));
       });
     });
   });

@@ -1,15 +1,34 @@
-import 'package:simple_sneaker_shop/products/infrastructure/product_dto.dart';
+import 'package:simple_sneaker_shop/core/core.dart';
+import 'package:simple_sneaker_shop/products/infrastructure/dto/dto.dart';
 
-class ProductLocalService {
-  Future<List<ProductDTO>> getProducts() async {
+class ProductRemoteService {
+  Future<PaginatedListRemoteResponse<ProductDTO>> getProductsPage(
+    int page,
+  ) async {
     final List<Map<String, Object>>? list =
-        _dumpProductsData['data'] as List<Map<String, Object>>?;
+        _paginatedDumpProducts[page]!['data'] as List<Map<String, Object>>?;
+    final Map<String, Object>? pageInfoMap =
+        _paginatedDumpProducts[page]!['pagination'] as Map<String, Object>?;
 
     //Fake loading
     await Future.delayed(const Duration(seconds: 2), () {});
-    return list?.map(ProductDTO.fromJson).toList() ?? [];
+    final List<ProductDTO> productDTOs =
+        list?.map(ProductDTO.fromJson).toList() ?? [];
+    final pageInfoDTO = ProductPageInfoDTO.fromJson(pageInfoMap!);
+    return PaginatedListRemoteResponse(
+      data: productDTOs,
+      page: pageInfoDTO.page,
+      pageSize: pageInfoDTO.pageSize,
+      totalCount: pageInfoDTO.totalCount,
+    );
   }
 }
+
+final Map<int, Map<String, Object>> _paginatedDumpProducts = {
+  0: _page0,
+  1: _page1,
+  2: _page2,
+};
 
 final _dumpProductsData = {
   'data': [

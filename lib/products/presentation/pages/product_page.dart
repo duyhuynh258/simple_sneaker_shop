@@ -21,7 +21,7 @@ class _ProductPageState extends ConsumerState<ProductPage> {
     final ProductsNotifier notifier =
         ref.read(productsNotifierProvider.notifier);
     Future.microtask(
-      notifier.loadProducts,
+      notifier.getFirstProductsPage,
     );
   }
 

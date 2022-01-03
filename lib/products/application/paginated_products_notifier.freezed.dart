@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'products_notifier.dart';
+part of 'paginated_products_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ProductsStateTearOff {
-  const _$ProductsStateTearOff();
+class _$PaginatedProductsStateTearOff {
+  const _$PaginatedProductsStateTearOff();
 
   _Initial initial({List<Product> products = const <Product>[]}) {
     return _Initial(
@@ -23,15 +23,22 @@ class _$ProductsStateTearOff {
     );
   }
 
-  _LoadInProgress loadInProgress({List<Product> products = const <Product>[]}) {
+  _LoadInProgress loadInProgress(
+      {List<Product> products = const <Product>[], int? itemsPerPage}) {
     return _LoadInProgress(
       products: products,
+      itemsPerPage: itemsPerPage,
     );
   }
 
-  _LoadSuccess loadSuccess({required List<Product> products}) {
+  _LoadSuccess loadSuccess(
+      {required List<Product> products,
+      required int itemsPerPage,
+      required bool isNextPageAvailable}) {
     return _LoadSuccess(
       products: products,
+      itemsPerPage: itemsPerPage,
+      isNextPageAvailable: isNextPageAvailable,
     );
   }
 
@@ -46,17 +53,20 @@ class _$ProductsStateTearOff {
 }
 
 /// @nodoc
-const $ProductsState = _$ProductsStateTearOff();
+const $PaginatedProductsState = _$PaginatedProductsStateTearOff();
 
 /// @nodoc
-mixin _$ProductsState {
+mixin _$PaginatedProductsState {
   List<Product> get products => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) initial,
-    required TResult Function(List<Product> products) loadInProgress,
-    required TResult Function(List<Product> products) loadSuccess,
+    required TResult Function(List<Product> products, int? itemsPerPage)
+        loadInProgress,
+    required TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)
+        loadSuccess,
     required TResult Function(List<Product> products, ProductsFailure failure)
         loadFailure,
   }) =>
@@ -64,8 +74,10 @@ mixin _$ProductsState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
   }) =>
@@ -73,8 +85,10 @@ mixin _$ProductsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
     required TResult orElse(),
@@ -107,26 +121,26 @@ mixin _$ProductsState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ProductsStateCopyWith<ProductsState> get copyWith =>
+  $PaginatedProductsStateCopyWith<PaginatedProductsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductsStateCopyWith<$Res> {
-  factory $ProductsStateCopyWith(
-          ProductsState value, $Res Function(ProductsState) then) =
-      _$ProductsStateCopyWithImpl<$Res>;
+abstract class $PaginatedProductsStateCopyWith<$Res> {
+  factory $PaginatedProductsStateCopyWith(PaginatedProductsState value,
+          $Res Function(PaginatedProductsState) then) =
+      _$PaginatedProductsStateCopyWithImpl<$Res>;
   $Res call({List<Product> products});
 }
 
 /// @nodoc
-class _$ProductsStateCopyWithImpl<$Res>
-    implements $ProductsStateCopyWith<$Res> {
-  _$ProductsStateCopyWithImpl(this._value, this._then);
+class _$PaginatedProductsStateCopyWithImpl<$Res>
+    implements $PaginatedProductsStateCopyWith<$Res> {
+  _$PaginatedProductsStateCopyWithImpl(this._value, this._then);
 
-  final ProductsState _value;
+  final PaginatedProductsState _value;
   // ignore: unused_field
-  final $Res Function(ProductsState) _then;
+  final $Res Function(PaginatedProductsState) _then;
 
   @override
   $Res call({
@@ -142,7 +156,8 @@ class _$ProductsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> implements $ProductsStateCopyWith<$Res> {
+abstract class _$InitialCopyWith<$Res>
+    implements $PaginatedProductsStateCopyWith<$Res> {
   factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
       __$InitialCopyWithImpl<$Res>;
   @override
@@ -150,7 +165,8 @@ abstract class _$InitialCopyWith<$Res> implements $ProductsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$ProductsStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res>
+    extends _$PaginatedProductsStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -182,7 +198,7 @@ class _$_Initial extends _Initial {
 
   @override
   String toString() {
-    return 'ProductsState.initial(products: $products)';
+    return 'PaginatedProductsState.initial(products: $products)';
   }
 
   @override
@@ -206,8 +222,11 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) initial,
-    required TResult Function(List<Product> products) loadInProgress,
-    required TResult Function(List<Product> products) loadSuccess,
+    required TResult Function(List<Product> products, int? itemsPerPage)
+        loadInProgress,
+    required TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)
+        loadSuccess,
     required TResult Function(List<Product> products, ProductsFailure failure)
         loadFailure,
   }) {
@@ -218,8 +237,10 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
   }) {
@@ -230,8 +251,10 @@ class _$_Initial extends _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
     required TResult orElse(),
@@ -280,7 +303,7 @@ class _$_Initial extends _Initial {
   }
 }
 
-abstract class _Initial extends ProductsState {
+abstract class _Initial extends PaginatedProductsState {
   const factory _Initial({List<Product> products}) = _$_Initial;
   const _Initial._() : super._();
 
@@ -294,17 +317,17 @@ abstract class _Initial extends ProductsState {
 
 /// @nodoc
 abstract class _$LoadInProgressCopyWith<$Res>
-    implements $ProductsStateCopyWith<$Res> {
+    implements $PaginatedProductsStateCopyWith<$Res> {
   factory _$LoadInProgressCopyWith(
           _LoadInProgress value, $Res Function(_LoadInProgress) then) =
       __$LoadInProgressCopyWithImpl<$Res>;
   @override
-  $Res call({List<Product> products});
+  $Res call({List<Product> products, int? itemsPerPage});
 }
 
 /// @nodoc
 class __$LoadInProgressCopyWithImpl<$Res>
-    extends _$ProductsStateCopyWithImpl<$Res>
+    extends _$PaginatedProductsStateCopyWithImpl<$Res>
     implements _$LoadInProgressCopyWith<$Res> {
   __$LoadInProgressCopyWithImpl(
       _LoadInProgress _value, $Res Function(_LoadInProgress) _then)
@@ -316,12 +339,17 @@ class __$LoadInProgressCopyWithImpl<$Res>
   @override
   $Res call({
     Object? products = freezed,
+    Object? itemsPerPage = freezed,
   }) {
     return _then(_LoadInProgress(
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      itemsPerPage: itemsPerPage == freezed
+          ? _value.itemsPerPage
+          : itemsPerPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -329,15 +357,19 @@ class __$LoadInProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadInProgress extends _LoadInProgress {
-  const _$_LoadInProgress({this.products = const <Product>[]}) : super._();
+  const _$_LoadInProgress(
+      {this.products = const <Product>[], this.itemsPerPage})
+      : super._();
 
   @JsonKey()
   @override
   final List<Product> products;
+  @override
+  final int? itemsPerPage;
 
   @override
   String toString() {
-    return 'ProductsState.loadInProgress(products: $products)';
+    return 'PaginatedProductsState.loadInProgress(products: $products, itemsPerPage: $itemsPerPage)';
   }
 
   @override
@@ -345,12 +377,16 @@ class _$_LoadInProgress extends _LoadInProgress {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadInProgress &&
-            const DeepCollectionEquality().equals(other.products, products));
+            const DeepCollectionEquality().equals(other.products, products) &&
+            const DeepCollectionEquality()
+                .equals(other.itemsPerPage, itemsPerPage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(products));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(products),
+      const DeepCollectionEquality().hash(itemsPerPage));
 
   @JsonKey(ignore: true)
   @override
@@ -361,38 +397,45 @@ class _$_LoadInProgress extends _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) initial,
-    required TResult Function(List<Product> products) loadInProgress,
-    required TResult Function(List<Product> products) loadSuccess,
+    required TResult Function(List<Product> products, int? itemsPerPage)
+        loadInProgress,
+    required TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)
+        loadSuccess,
     required TResult Function(List<Product> products, ProductsFailure failure)
         loadFailure,
   }) {
-    return loadInProgress(products);
+    return loadInProgress(products, itemsPerPage);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
   }) {
-    return loadInProgress?.call(products);
+    return loadInProgress?.call(products, itemsPerPage);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
-      return loadInProgress(products);
+      return loadInProgress(products, itemsPerPage);
     }
     return orElse();
   }
@@ -435,12 +478,14 @@ class _$_LoadInProgress extends _LoadInProgress {
   }
 }
 
-abstract class _LoadInProgress extends ProductsState {
-  const factory _LoadInProgress({List<Product> products}) = _$_LoadInProgress;
+abstract class _LoadInProgress extends PaginatedProductsState {
+  const factory _LoadInProgress({List<Product> products, int? itemsPerPage}) =
+      _$_LoadInProgress;
   const _LoadInProgress._() : super._();
 
   @override
   List<Product> get products;
+  int? get itemsPerPage;
   @override
   @JsonKey(ignore: true)
   _$LoadInProgressCopyWith<_LoadInProgress> get copyWith =>
@@ -449,16 +494,18 @@ abstract class _LoadInProgress extends ProductsState {
 
 /// @nodoc
 abstract class _$LoadSuccessCopyWith<$Res>
-    implements $ProductsStateCopyWith<$Res> {
+    implements $PaginatedProductsStateCopyWith<$Res> {
   factory _$LoadSuccessCopyWith(
           _LoadSuccess value, $Res Function(_LoadSuccess) then) =
       __$LoadSuccessCopyWithImpl<$Res>;
   @override
-  $Res call({List<Product> products});
+  $Res call(
+      {List<Product> products, int itemsPerPage, bool isNextPageAvailable});
 }
 
 /// @nodoc
-class __$LoadSuccessCopyWithImpl<$Res> extends _$ProductsStateCopyWithImpl<$Res>
+class __$LoadSuccessCopyWithImpl<$Res>
+    extends _$PaginatedProductsStateCopyWithImpl<$Res>
     implements _$LoadSuccessCopyWith<$Res> {
   __$LoadSuccessCopyWithImpl(
       _LoadSuccess _value, $Res Function(_LoadSuccess) _then)
@@ -470,12 +517,22 @@ class __$LoadSuccessCopyWithImpl<$Res> extends _$ProductsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? products = freezed,
+    Object? itemsPerPage = freezed,
+    Object? isNextPageAvailable = freezed,
   }) {
     return _then(_LoadSuccess(
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      itemsPerPage: itemsPerPage == freezed
+          ? _value.itemsPerPage
+          : itemsPerPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      isNextPageAvailable: isNextPageAvailable == freezed
+          ? _value.isNextPageAvailable
+          : isNextPageAvailable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -483,14 +540,22 @@ class __$LoadSuccessCopyWithImpl<$Res> extends _$ProductsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess extends _LoadSuccess {
-  const _$_LoadSuccess({required this.products}) : super._();
+  const _$_LoadSuccess(
+      {required this.products,
+      required this.itemsPerPage,
+      required this.isNextPageAvailable})
+      : super._();
 
   @override
   final List<Product> products;
+  @override
+  final int itemsPerPage;
+  @override
+  final bool isNextPageAvailable;
 
   @override
   String toString() {
-    return 'ProductsState.loadSuccess(products: $products)';
+    return 'PaginatedProductsState.loadSuccess(products: $products, itemsPerPage: $itemsPerPage, isNextPageAvailable: $isNextPageAvailable)';
   }
 
   @override
@@ -498,12 +563,19 @@ class _$_LoadSuccess extends _LoadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LoadSuccess &&
-            const DeepCollectionEquality().equals(other.products, products));
+            const DeepCollectionEquality().equals(other.products, products) &&
+            const DeepCollectionEquality()
+                .equals(other.itemsPerPage, itemsPerPage) &&
+            const DeepCollectionEquality()
+                .equals(other.isNextPageAvailable, isNextPageAvailable));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(products));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(products),
+      const DeepCollectionEquality().hash(itemsPerPage),
+      const DeepCollectionEquality().hash(isNextPageAvailable));
 
   @JsonKey(ignore: true)
   @override
@@ -514,38 +586,45 @@ class _$_LoadSuccess extends _LoadSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) initial,
-    required TResult Function(List<Product> products) loadInProgress,
-    required TResult Function(List<Product> products) loadSuccess,
+    required TResult Function(List<Product> products, int? itemsPerPage)
+        loadInProgress,
+    required TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)
+        loadSuccess,
     required TResult Function(List<Product> products, ProductsFailure failure)
         loadFailure,
   }) {
-    return loadSuccess(products);
+    return loadSuccess(products, itemsPerPage, isNextPageAvailable);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
   }) {
-    return loadSuccess?.call(products);
+    return loadSuccess?.call(products, itemsPerPage, isNextPageAvailable);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess(products);
+      return loadSuccess(products, itemsPerPage, isNextPageAvailable);
     }
     return orElse();
   }
@@ -588,13 +667,17 @@ class _$_LoadSuccess extends _LoadSuccess {
   }
 }
 
-abstract class _LoadSuccess extends ProductsState {
-  const factory _LoadSuccess({required List<Product> products}) =
-      _$_LoadSuccess;
+abstract class _LoadSuccess extends PaginatedProductsState {
+  const factory _LoadSuccess(
+      {required List<Product> products,
+      required int itemsPerPage,
+      required bool isNextPageAvailable}) = _$_LoadSuccess;
   const _LoadSuccess._() : super._();
 
   @override
   List<Product> get products;
+  int get itemsPerPage;
+  bool get isNextPageAvailable;
   @override
   @JsonKey(ignore: true)
   _$LoadSuccessCopyWith<_LoadSuccess> get copyWith =>
@@ -603,7 +686,7 @@ abstract class _LoadSuccess extends ProductsState {
 
 /// @nodoc
 abstract class _$LoadFailureCopyWith<$Res>
-    implements $ProductsStateCopyWith<$Res> {
+    implements $PaginatedProductsStateCopyWith<$Res> {
   factory _$LoadFailureCopyWith(
           _LoadFailure value, $Res Function(_LoadFailure) then) =
       __$LoadFailureCopyWithImpl<$Res>;
@@ -614,7 +697,8 @@ abstract class _$LoadFailureCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LoadFailureCopyWithImpl<$Res> extends _$ProductsStateCopyWithImpl<$Res>
+class __$LoadFailureCopyWithImpl<$Res>
+    extends _$PaginatedProductsStateCopyWithImpl<$Res>
     implements _$LoadFailureCopyWith<$Res> {
   __$LoadFailureCopyWithImpl(
       _LoadFailure _value, $Res Function(_LoadFailure) _then)
@@ -663,7 +747,7 @@ class _$_LoadFailure extends _LoadFailure {
 
   @override
   String toString() {
-    return 'ProductsState.loadFailure(products: $products, failure: $failure)';
+    return 'PaginatedProductsState.loadFailure(products: $products, failure: $failure)';
   }
 
   @override
@@ -690,8 +774,11 @@ class _$_LoadFailure extends _LoadFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) initial,
-    required TResult Function(List<Product> products) loadInProgress,
-    required TResult Function(List<Product> products) loadSuccess,
+    required TResult Function(List<Product> products, int? itemsPerPage)
+        loadInProgress,
+    required TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)
+        loadSuccess,
     required TResult Function(List<Product> products, ProductsFailure failure)
         loadFailure,
   }) {
@@ -702,8 +789,10 @@ class _$_LoadFailure extends _LoadFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
   }) {
@@ -714,8 +803,10 @@ class _$_LoadFailure extends _LoadFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? initial,
-    TResult Function(List<Product> products)? loadInProgress,
-    TResult Function(List<Product> products)? loadSuccess,
+    TResult Function(List<Product> products, int? itemsPerPage)? loadInProgress,
+    TResult Function(
+            List<Product> products, int itemsPerPage, bool isNextPageAvailable)?
+        loadSuccess,
     TResult Function(List<Product> products, ProductsFailure failure)?
         loadFailure,
     required TResult orElse(),
@@ -764,7 +855,7 @@ class _$_LoadFailure extends _LoadFailure {
   }
 }
 
-abstract class _LoadFailure extends ProductsState {
+abstract class _LoadFailure extends PaginatedProductsState {
   const factory _LoadFailure(
       {List<Product> products,
       required ProductsFailure failure}) = _$_LoadFailure;

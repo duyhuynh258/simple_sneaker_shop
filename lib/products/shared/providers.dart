@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_sneaker_shop/products/application/products_notifier.dart';
+import 'package:simple_sneaker_shop/products/application/application.dart';
 import 'package:simple_sneaker_shop/products/infrastructure/infrastructure.dart';
 
-final productLocalServiceProvider = Provider<ProductLocalService>((ref) {
-  return ProductLocalService();
+final productLocalServiceProvider = Provider<ProductRemoteService>((ref) {
+  return ProductRemoteService();
 });
 
 final productRepositoryProvider = Provider<ProductRepository>((ref) {
@@ -11,5 +11,5 @@ final productRepositoryProvider = Provider<ProductRepository>((ref) {
 });
 
 final productsNotifierProvider =
-    StateNotifierProvider.autoDispose<ProductsNotifier, ProductsState>(
+    StateNotifierProvider.autoDispose<ProductsNotifier, PaginatedProductsState>(
         (ref) => ProductsNotifier(ref.watch(productRepositoryProvider)));
