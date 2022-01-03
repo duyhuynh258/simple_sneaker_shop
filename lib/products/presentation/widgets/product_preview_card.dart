@@ -33,11 +33,14 @@ class ProductPreviewCard extends StatelessWidget {
                       borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(16),
                       ),
-                      child: FadeInImage.assetNetwork(
-                        placeholder: 'assets/product_placeholder.png',
-                        image: product.imageUrls.first,
-                        fit: BoxFit.cover,
-                      ),
+                      child: product.imageUrls.isEmpty ||
+                              product.imageUrls.first.isEmpty
+                          ? Image.asset('assets/product_placeholder.png')
+                          : FadeInImage.assetNetwork(
+                              placeholder: 'assets/product_placeholder.png',
+                              image: product.imageUrls.first,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                   if (product.justDropped)
