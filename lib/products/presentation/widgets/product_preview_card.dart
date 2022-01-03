@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_sneaker_shop/products/domain/product.dart';
-import 'package:simple_sneaker_shop/products/presentation/widgets/product_preview_shimming_card.dart';
 
 class ProductPreviewCard extends StatelessWidget {
   const ProductPreviewCard({Key? key, required this.product}) : super(key: key);
