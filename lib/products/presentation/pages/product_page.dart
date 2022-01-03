@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_sneaker_shop/core/presentation/widgets/loading_view.dart';
 import 'package:simple_sneaker_shop/products/application/paginated_products_notifier.dart';
 import 'package:simple_sneaker_shop/products/application/products_notifier.dart';
 import 'package:simple_sneaker_shop/products/presentation/widgets/product_shimming_list_view.dart';
@@ -32,6 +31,16 @@ class _ProductPageState extends ConsumerState<ProductPage> {
     final PaginatedProductsState productsState =
         ref.watch(productsNotifierProvider);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('rekaenS Sneaker'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.favorite_border_sharp)),
+          IconButton(
+              onPressed: () {}, icon: const Icon(Icons.shopping_cart_outlined))
+        ],
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           await ref

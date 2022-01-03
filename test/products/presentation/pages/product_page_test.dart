@@ -4,13 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:simple_sneaker_shop/core/core.dart';
-import 'package:simple_sneaker_shop/core/presentation/widgets/loading_view.dart';
 import 'package:simple_sneaker_shop/products/domain/product.dart';
 import 'package:simple_sneaker_shop/products/domain/products_failure.dart';
 import 'package:simple_sneaker_shop/products/infrastructure/product_repository.dart';
 import 'package:simple_sneaker_shop/products/presentation/pages/product_page.dart';
 import 'package:simple_sneaker_shop/products/presentation/widgets/product_empty_view.dart';
 import 'package:simple_sneaker_shop/products/presentation/widgets/product_list_view.dart';
+import 'package:simple_sneaker_shop/products/presentation/widgets/product_shimming_list_view.dart';
 import 'package:simple_sneaker_shop/products/presentation/widgets/products_load_failed_view.dart';
 import 'package:simple_sneaker_shop/products/shared/providers.dart';
 
@@ -43,7 +43,7 @@ void main() {
   });
 
   testWidgets(
-      'render LoadingView then ProductListView when load products success.',
+      'render ProductShimmingListView then ProductListView when load products success.',
       (WidgetTester tester) async {
     await mockNetworkImagesFor(
       // Run your tests.
@@ -60,7 +60,7 @@ void main() {
         );
 
         await tester.pump();
-        expect(find.byType(LoadingView), findsOneWidget);
+        expect(find.byType(ProductShimmingListView), findsOneWidget);
         await tester.pump(getProductDuration);
         expect(find.byType(ProductListView), findsOneWidget);
       },
@@ -68,33 +68,7 @@ void main() {
   });
 
   testWidgets(
-      'render LoadingView and ProductListView when loading more products.',
-      (WidgetTester tester) async {
-    await mockNetworkImagesFor(
-      // Run your tests.
-      () async {
-        const getProductDuration = Duration(seconds: 2);
-        when(() => mockProductRepository.getProductsPage(any())).thenAnswer(
-            (invocation) => Future.delayed(getProductDuration,
-                () async => right(productsPageWith2ProductsAndMore)));
-
-        await tester.pumpApp(
-          overrides: [
-            productRepositoryProvider.overrideWithValue(mockProductRepository),
-          ],
-          widget: const ProductPage(),
-        );
-
-        await tester.pump();
-        expect(find.byType(LoadingView), findsOneWidget);
-        await tester.pump(getProductDuration);
-        expect(find.byType(ProductListView), findsOneWidget);
-      },
-    );
-  });
-
-  testWidgets(
-      'render LoadingView and EmptyProductView when load products success.',
+      'render ProductShimmingListView then EmptyProductView when load products success.',
       (WidgetTester tester) async {
     //arrange
     const getProductDuration = Duration(seconds: 2);
@@ -109,13 +83,12 @@ void main() {
     );
 
     await tester.pump();
-    expect(find.byType(LoadingView), findsOneWidget);
+    expect(find.byType(ProductShimmingListView), findsOneWidget);
     await tester.pump(getProductDuration);
     expect(find.byType(ProductEmptyView), findsOneWidget);
   });
 
-  testWidgets(
-      'render ProductsLoadFailedView and when first load products failed.',
+  testWidgets('render ProductsLoadFailedView when first load products failed.',
       (WidgetTester tester) async {
     //arrange
     const getProductDuration = Duration(seconds: 2);
@@ -132,7 +105,7 @@ void main() {
     );
 
     await tester.pump();
-    expect(find.byType(LoadingView), findsOneWidget);
+    expect(find.byType(ProductShimmingListView), findsOneWidget);
     await tester.pump(getProductDuration);
     expect(find.byType(ProductsLoadFailedView), findsOneWidget);
   });
