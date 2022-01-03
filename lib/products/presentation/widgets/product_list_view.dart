@@ -33,13 +33,7 @@ class _ProductListViewState extends State<ProductListView> {
         //physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          // 3
-          return ProductPreviewCard(
-              uuid: widget._products[index].uuid,
-              imageUrls: widget._products[index].imageUrls,
-              name: widget._products[index].name,
-              description: widget._products[index].description,
-              justDropped: widget._products[index].justDropped);
+          return ProductPreviewCard(product: widget._products[index]);
         },
       ),
     );
