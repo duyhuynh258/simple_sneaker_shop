@@ -26,9 +26,8 @@ void main() {
   final productsPageWith2Products = PaginatedList(
       data: ProductsFixture.twoProducts, page: 0, pageSize: 2, totalCount: 2);
 
-  final productsPageWith2ProductsAndMore = PaginatedList(
-      data: ProductsFixture.twoProducts, page: 0, pageSize: 2, totalCount: 4);
-  const productsEmptyPage =
+  final productsEmptyPage =
+      // ignore: prefer_const_constructors
       PaginatedList(data: <Product>[], page: 0, pageSize: 2, totalCount: 0);
 
   setUp(() {
